@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { GildedRose, Item } from '../src/gilded-rose';
+import { Item, Store, Supply } from '../src';
 
 /*
     Intially I will separate test cases
@@ -18,10 +18,10 @@ import { GildedRose, Item } from '../src/gilded-rose';
 describe(`Gilded Rose package`, () => {
 
     describe(`It works`, () => {
-        let gildedRose: GildedRose;
+        let gildedRose: Store<Item>;
 
         beforeEach(() => {
-            gildedRose = new GildedRose();
+            gildedRose = new Store();
         });
 
         it(`Should create an empty instance of GuildedRose`, () => {
@@ -30,13 +30,13 @@ describe(`Gilded Rose package`, () => {
     });
 
     describe(`With single random item`, () => {
-        let gildedRose: GildedRose;
+        let gildedRose: Store<Item>;
 
         beforeEach(() => {
-            gildedRose = new GildedRose([new Item('Random item 1', 10, 15)]);
+            gildedRose = new Store([new Item('Random item 1', 10, 15)]);
         });
 
-        it(`Should add Random item 1 to to the GildedRose instance`, () => {
+        it(`Should add Random item 1 to to the Store instance`, () => {
             expect(gildedRose.items[0].name).to.equal('Random item 1');
         });
 
@@ -72,11 +72,11 @@ describe(`Gilded Rose package`, () => {
         /* I will be back here in the future */
     });
 
-    describe(`With single Aged Brie`, () => {
-        let gildedRose: GildedRose;
+    describe(`With single ${Supply.AGED_BRIE}`, () => {
+        let gildedRose: Store<Item>;
 
         beforeEach(() => {
-            gildedRose = new GildedRose([new Item('Aged Brie', 5, 10)]);
+            gildedRose = new Store([new Item(Supply.AGED_BRIE, 5, 10)]);
         });
 
         it(`Should increase quality from 10 to 11 on updateQuality`, () => {
@@ -104,11 +104,11 @@ describe(`Gilded Rose package`, () => {
         });
     });
 
-    describe(`With single Sulfuras, Hand of Ragnaros`, () => {
-        let gildedRose: GildedRose;
+    describe(`With single ${Supply.SULFURAS}`, () => {
+        let gildedRose: Store<Item>;
 
         beforeEach(() => {
-            gildedRose = new GildedRose([new Item('Sulfuras, Hand of Ragnaros', 20, 30)]);
+            gildedRose = new Store([new Item(Supply.SULFURAS, 20, 30)]);
         });
 
         it(`Should not alter quality on updateQuality`, () => {
@@ -128,11 +128,11 @@ describe(`Gilded Rose package`, () => {
         });
     });
 
-    describe(`With single Backstage passes to a TAFKAL80ETC concert`, () => {
-        let gildedRose: GildedRose;
+    describe(`With single ${Supply.CONCERT_TICKET}`, () => {
+        let gildedRose: Store<Item>;
 
         beforeEach(() => {
-            gildedRose = new GildedRose([new Item('Backstage passes to a TAFKAL80ETC concert', 15, 20)]);
+            gildedRose = new Store([new Item(Supply.CONCERT_TICKET, 15, 20)]);
         });
 
         it(`When sellIn > 11 should increase quality to 21 on updateQuality`, () => {
