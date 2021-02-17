@@ -2,6 +2,7 @@ import { AbstractItem, AbstractStrategy, AbstractUpdater } from "../abstract";
 
 import {
     AgedBrieUpdater,
+    ConjuredUpdater,
     ConcertUpdater,
     GeneralUpdater,
     SulfurasUpdater,
@@ -22,6 +23,9 @@ export class Strategy<T extends AbstractItem> extends AbstractStrategy<T> {
                 break;
             case Supply.CONCERT_TICKET:
                 this.updater = new ConcertUpdater<T>();
+                break;
+            case Supply.CONJURED:
+                this.updater = new ConjuredUpdater<T>();
                 break;
             default:
                 this.updater = new GeneralUpdater<T>();

@@ -15,6 +15,10 @@ export class Store<T extends AbstractItem> extends AbstractStore<T> {
 
        Decided to keep numbers in updater classes hardcoded because in the future bussiness requirements
        might change and even might be different in each supply case.
+
+       There are some edge cases which must be tested. I feel a little bit tired, thus It will be finished tomorrow.
+
+       After those edge cases are covered I will proceed with CLI package task in which I reuse GildedRose implementation.
    */
     updateQuality(): T[] {
         for (const item of this.items) {
