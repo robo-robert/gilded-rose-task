@@ -14,6 +14,9 @@ import { Item, Store, Supply } from '../src';
     -- % Branch 100%
     -- % Funcs 100%
     -- % Lines 100%
+
+    Ok. Since I have refactored Mr. Leeroy's code I can expand it with additional supply Conjured.
+    First let's write some test which will have to pass for closure case.
 */
 describe(`Gilded Rose package`, () => {
 
@@ -166,4 +169,36 @@ describe(`Gilded Rose package`, () => {
             expect(gildedRose.items[0].quality).to.equal(0);
         });
     });
+
+    describe(`With single ${Supply.CONJURED}`, () => {
+        let gildedRose: Store<Item>;
+
+        beforeEach(() => {
+            gildedRose = new Store([
+                new Item(Supply.CONJURED, 10, 20)
+            ]);
+        });
+
+        it(`Should degrade sellIn from 10 to 9 on updateQuality`, () => {
+            gildedRose.updateQuality();
+            expect(gildedRose.items[0].sellIn).to.equal(9);
+        });
+
+        it(`Should degrade quality from 20 to 18 on updateQuality`, () => {
+            gildedRose.updateQuality();
+            expect(gildedRose.items[0].quality).to.equal(18);
+        });
+
+        it(`When sellIn < 0 should degrade Quality from 20 to 16 on updateQuality`, () => {
+            gildedRose.items[0].sellIn = -1;
+            gildedRose.updateQuality();
+            expect(gildedRose.items[0].quality).to.equal(16);
+        });
+
+        it(`When Quality is 0 should not reduce quality on updateQuality`, () => {
+            gildedRose.items[0].quality = 0;
+            gildedRose.updateQuality()
+            expect(gildedRose.items[0].quality).to.equal(0);
+        });
+    })
 });
