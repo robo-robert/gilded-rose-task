@@ -6,10 +6,12 @@ import { AbstractItem } from "./item";
 */
 export abstract class AbstractUpdater<T extends AbstractItem> implements IUpdater<T> {
 
-    protected abstract updateQuality(item: T): void; // This is initial thought
-    protected abstract updateSellIn(item: T): void; // This is initial thought
+    protected abstract validateInput(item: T): void;
+    protected abstract updateQuality(item: T): void;
+    protected abstract updateSellIn(item: T): void;
 
     update(item: T): void {
+        this.validateInput(item);
         this.updateQuality(item);
         this.updateSellIn(item);
     }

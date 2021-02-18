@@ -113,12 +113,12 @@ describe(`Gilded Rose package`, () => {
         let gildedRose: Store<Item>;
 
         beforeEach(() => {
-            gildedRose = new Store([new Item(Supply.SULFURAS, 20, 30)]);
+            gildedRose = new Store([new Item(Supply.SULFURAS, 20, 80)]);
         });
 
         it(`Should not alter quality on updateQuality`, () => {
             gildedRose.updateQuality();
-            expect(gildedRose.items[0].quality).to.equal(30);
+            expect(gildedRose.items[0].quality).to.equal(80);
         });
 
         it(`Should not alter sellIn on updateQuality`, () => {
@@ -129,7 +129,7 @@ describe(`Gilded Rose package`, () => {
         it('When sellIn < 0 should not decrease quality on updateQuality', () => {
             gildedRose.items[0].sellIn = -1;
             gildedRose.updateQuality();
-            expect(gildedRose.items[0].quality).to.equal(30);
+            expect(gildedRose.items[0].quality).to.equal(80);
         });
     });
 
@@ -226,9 +226,9 @@ describe(`Gilded Rose package`, () => {
             it(`Item input should not exceed maximum possible quality of 50 except ${Supply.SULFURAS}`, () => {
                 gildedRose.updateQuality();
                 expect(gildedRose.items[0].quality).to.equal(49);
-                expect(gildedRose.items[1].quality).to.equal(49);
-                expect(gildedRose.items[2].quality).to.equal(49);
-                expect(gildedRose.items[3].quality).to.equal(49);
+                expect(gildedRose.items[1].quality).to.equal(50);
+                expect(gildedRose.items[2].quality).to.equal(50);
+                expect(gildedRose.items[3].quality).to.equal(48);
                 expect(gildedRose.items[4].quality).to.equal(80);
             });
 
