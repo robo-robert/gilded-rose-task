@@ -237,6 +237,7 @@ describe(`Gilded Rose package`, () => {
                 gildedRose.items[1].quality = -1;
                 gildedRose.items[2].quality = -1;
                 gildedRose.items[3].quality = -1;
+                gildedRose.items[4].quality = -1;
                 gildedRose.updateQuality();
                 expect(gildedRose.items[0].quality).to.equal(0);
                 expect(gildedRose.items[1].quality).to.equal(0);
