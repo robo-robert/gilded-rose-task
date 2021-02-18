@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { Item, Store, Supply } from '../src';
+import { Item, Store, Supply } from '../src/packages/gilded-rose';
 
 /*
     Intially I will separate test cases
@@ -16,7 +16,9 @@ import { Item, Store, Supply } from '../src';
     -- % Lines 100%
 
     Ok. Since I have refactored Mr. Leeroy's code I can expand it with additional supply Conjured.
-    First let's write some test which will have to pass for closure case.
+    First let's write some test which will have to pass for Conjured case.
+
+    There is a need to ensure edge cases which can occur. Thus I will try to implement some.
 */
 describe(`Gilded Rose package`, () => {
 
@@ -200,5 +202,51 @@ describe(`Gilded Rose package`, () => {
             gildedRose.updateQuality()
             expect(gildedRose.items[0].quality).to.equal(0);
         });
-    })
+    });
+
+    describe(`With edge cases`, () => {
+
+        /*
+            In my opinion system should modify item if it initially exceeds lower or upper bounds of the system specification.
+            It should not pass these tests. I might be wrong in some cases. We will discuss this live.
+        */
+        describe(`Edge cases except ${Supply.SULFURAS}`, () => {
+            let gildedRose: Store<Item>;
+
+            beforeEach(() => {
+                gildedRose = new Store([
+                    new Item('Random item 1', 10, 51),
+                    new Item(Supply.AGED_BRIE, 5, 51),
+                    new Item(Supply.CONCERT_TICKET, 15, 51),
+                    new Item(Supply.CONJURED, 10, 51),
+                    new Item(Supply.SULFURAS, 20, 80)
+                ]);
+            });
+
+            it(`Item input should not exceed maximum possible quality of 50 except ${Supply.SULFURAS}`, () => {
+                gildedRose.updateQuality();
+                expect(gildedRose.items[0].quality).to.equal(49);
+                expect(gildedRose.items[1].quality).to.equal(49);
+                expect(gildedRose.items[2].quality).to.equal(49);
+                expect(gildedRose.items[3].quality).to.equal(49);
+                expect(gildedRose.items[4].quality).to.equal(80);
+            });
+
+            it(`Item input should not exceed minimum possible quality of 0 except ${Supply.SULFURAS}`, () => {
+                gildedRose.items[0].quality = -1;
+                gildedRose.items[1].quality = -1;
+                gildedRose.items[2].quality = -1;
+                gildedRose.items[3].quality = -1;
+                gildedRose.updateQuality();
+                expect(gildedRose.items[0].quality).to.equal(0);
+                expect(gildedRose.items[1].quality).to.equal(0);
+                expect(gildedRose.items[2].quality).to.equal(0);
+                expect(gildedRose.items[3].quality).to.equal(0);
+                expect(gildedRose.items[4].quality).to.equal(80);
+            });
+
+        });
+
+    });
+
 });
