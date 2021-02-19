@@ -1,4 +1,4 @@
 export interface ICliProps {
-    days: number;
-    requests: number;
+  days: number;
+  requests: number;
 }
