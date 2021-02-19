@@ -43,7 +43,7 @@ export class AnswerRecursiveFetcher<T extends IAnswerReponse> extends AbstractRe
                     .info(`Iteration no. ${iteration}. There was no success responses from ${times} sent requests.`);
             }
 
-            return responses;
+            return output;
         }
         catch {
             this.logger.error(`An error occurred during iteration no. ${iteration} while recursively fetching multiple responses from ${url}.`);
