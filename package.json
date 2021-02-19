@@ -14,7 +14,7 @@
     "pretest": "yarn clean",
     "test": "nyc mocha",
     "build": "yarn clean && tsc",
-    "publish:local": "yarn build & npm link",
+    "publish:local": "npm link",
     "unpublish:local": "npm unlink"
   },
   "license": "MIT",

@@ -1,7 +1,7 @@
 import yargs from 'yargs';
 
 import { Cli, Logger, AnswerRecursiveFetcher } from './packages/cli';
-import { Item, Store } from './packages/gilded-rose';
+import { Item, Store, Supply } from './packages/gilded-rose';
 
 const options = {
     days: {
@@ -35,7 +35,12 @@ const recursiveFetcher = new AnswerRecursiveFetcher({
 });
 
 const gildedRose = new Store<Item>([
-
+    new Item('Random item 1', 5, 15),
+    new Item('Random item 2', 10, 20),
+    new Item(Supply.AGED_BRIE, 5, 25),
+    new Item(Supply.CONCERT_TICKET, 15, 30),
+    new Item(Supply.CONJURED, 10, 20),
+    new Item(Supply.SULFURAS, 20, 80)
 ]);
 
 const cli = new Cli({
