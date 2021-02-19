@@ -1,6 +1,6 @@
 {
   "name": "gilded-rose-task",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "src/index.ts",
   "repository": "https://github.com/robo-robert/gilded-rose-task.git",
   "author": "Robertas Skalskas",
