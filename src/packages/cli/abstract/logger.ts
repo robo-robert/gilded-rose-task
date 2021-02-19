@@ -1,14 +1,14 @@
 import { Logger } from 'winston';
 
 export abstract class AbstractLogger {
-    protected logger: Logger;
+  protected logger: Logger;
 
-    constructor() {
-        this.initialize();
-    }
+  constructor() {
+    this.initialize();
+  }
 
-    protected abstract initialize(): void;
+  protected abstract initialize(): void;
 
-    abstract info(message: string): void;
-    abstract error(message: string): void;
+  abstract info(message: string): void;
+  abstract error(message: string): void;
 }

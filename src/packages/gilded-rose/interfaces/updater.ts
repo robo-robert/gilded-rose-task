@@ -4,5 +4,5 @@
     accept a generic Item
 */
 export interface IUpdater<T> {
-    update: (item: T) => void;
+  update: (item: T) => void;
 }

@@ -7,7 +7,7 @@
     methods to it.
 */
 export interface IItem {
-    name: string;
-    sellIn: number;
-    quality: number;
+  name: string;
+  sellIn: number;
+  quality: number;
 }
