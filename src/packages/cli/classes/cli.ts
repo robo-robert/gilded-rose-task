@@ -10,6 +10,7 @@ export class Cli<T, S extends AbstractItem> extends AbstractCli<T, S> {
         const self = this;
         return co(function* () {
             try {
+                self.logger.info(`CLI application has started running`);
                 for (let day = 1; day <= days; day++) {
                     self.logger.info(`DAY no. ${day}`);
                     yield self
@@ -20,7 +21,9 @@ export class Cli<T, S extends AbstractItem> extends AbstractCli<T, S> {
                             iteration: 0,
                             output: []
                         });
+                    self.logger.info(`Starting to update store items.`);
                     self.gildedRose.updateQuality();
+                    self.logger.info(`Finished updating store items`);
                 }
                 self.logger.info(`CLI application finished running.`);
             }

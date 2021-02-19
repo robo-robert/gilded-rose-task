@@ -223,7 +223,7 @@ describe(`Gilded Rose package`, () => {
                 ]);
             });
 
-            it(`Item input should not exceed maximum possible quality of 50 except ${Supply.SULFURAS}`, () => {
+            it(`Item input should not exceed maximum possible quality of 50`, () => {
                 gildedRose.updateQuality();
                 expect(gildedRose.items[0].quality).to.equal(49);
                 expect(gildedRose.items[1].quality).to.equal(50);
@@ -232,7 +232,7 @@ describe(`Gilded Rose package`, () => {
                 expect(gildedRose.items[4].quality).to.equal(80);
             });
 
-            it(`Item input should not exceed minimum possible quality of 0 except ${Supply.SULFURAS}`, () => {
+            it(`Item input should not exceed minimum possible quality of 0 except`, () => {
                 gildedRose.items[0].quality = -1;
                 gildedRose.items[1].quality = -1;
                 gildedRose.items[2].quality = -1;

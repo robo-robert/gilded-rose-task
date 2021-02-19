@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+
+const fs = require("fs");
+const path = require("path");
+
+const execSync = require("child_process").execSync;
+
+const libDir = path.resolve("./dist");
+
+if (!fs.existsSync(libDir)) {
+    execSync("yarn build");
+}
+
+require(libDir);
