@@ -1,31 +1,30 @@
-import { AbstractItem, AbstractUpdater } from "../../abstract";
+import { AbstractItem, AbstractUpdater } from '../../abstract';
 
 /*
     Initial implementation of aged brie updater
 */
 export class AgedBrieUpdater<T extends AbstractItem> extends AbstractUpdater<T> {
-
-    validateInput(item: T): void {
-        if (item.quality < 0) {
-            item.quality = 0;
-        }
-
-        if (item.quality > 50) {
-            item.quality = 50;
-        }
+  validateInput(item: T): void {
+    if (item.quality < 0) {
+      item.quality = 0;
     }
 
-    updateQuality(item: T): void {
-        if (item.quality > 0 && item.quality < 50) {
-            item.quality += 1;
-        }
+    if (item.quality > 50) {
+      item.quality = 50;
     }
+  }
 
-    updateSellIn(item: T): void {
-        item.sellIn -= 1;
-
-        if (item.sellIn < 0) {
-            this.updateQuality(item);
-        }
+  updateQuality(item: T): void {
+    if (item.quality > 0 && item.quality < 50) {
+      item.quality += 1;
     }
+  }
+
+  updateSellIn(item: T): void {
+    item.sellIn -= 1;
+
+    if (item.sellIn < 0) {
+      this.updateQuality(item);
+    }
+  }
 }

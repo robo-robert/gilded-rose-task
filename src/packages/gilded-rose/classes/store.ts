@@ -1,13 +1,13 @@
-import { AbstractStore, AbstractItem, AbstractStrategy } from "../abstract";
-import { Strategy } from "./strategy";
+import { AbstractStore, AbstractItem, AbstractStrategy } from '../abstract';
+import { Strategy } from './strategy';
 
 /*
     Generic class Store will accept only classes which are of AbstractItem
 */
 export class Store<T extends AbstractItem> extends AbstractStore<T> {
-    private strategy: AbstractStrategy<T> = new Strategy<T>();
+  private strategy: AbstractStrategy<T> = new Strategy<T>();
 
-    /* 
+  /* 
        Ok. Now I think i should implement rest of updaters
        and implement a switch statement in switchStrategy method.
 
@@ -20,14 +20,12 @@ export class Store<T extends AbstractItem> extends AbstractStore<T> {
 
        After those edge cases are covered I will proceed with CLI package task in which I reuse GildedRose implementation.
    */
-    updateQuality(): T[] {
-        for (const item of this.items) {
-            // It passes tests with random items so OK
-            this.strategy
-                .switchStrategy(item)
-                .update(item);
-        }
-
-        return this.items;
+  updateQuality(): T[] {
+    for (const item of this.items) {
+      // It passes tests with random items so OK
+      this.strategy.switchStrategy(item).update(item);
     }
+
+    return this.items;
+  }
 }

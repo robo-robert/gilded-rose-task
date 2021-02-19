@@ -1,5 +1,5 @@
 export enum Answers {
-    YES = 'yes',
-    NO = 'no',
-    MAYBE = 'maybe',
+  YES = 'yes',
+  NO = 'no',
+  MAYBE = 'maybe',
 }

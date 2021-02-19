@@ -5,6 +5,6 @@
     return items after mutation
 */
 export interface IStore<T> {
-    items: T[];
-    updateQuality(): T[];
+  items: T[];
+  updateQuality(): T[];
 }

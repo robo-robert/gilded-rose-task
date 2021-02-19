@@ -1,3 +1,3 @@
 export interface IGetProps {
-    url: string;
+  url: string;
 }
